@@ -1,0 +1,4 @@
+{
+  "extends": "@esc-party-vote/typescript-config",
+  "include": ["./src"]
+}

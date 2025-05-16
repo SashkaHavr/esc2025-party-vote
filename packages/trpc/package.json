@@ -1,0 +1,33 @@
+{
+  "name": "@esc-party-vote/trpc",
+  "type": "module",
+  "imports": {
+    "#*": "./src/*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "format": "prettier . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore --write",
+    "format:check": "prettier . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore --check",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@esc-party-vote/prettier-config",
+  "dependencies": {
+    "@esc-party-vote/db": "workspace:*",
+    "@esc-party-vote/env": "workspace:*",
+    "@trpc/server": "catalog:trpc",
+    "drizzle-orm": "catalog:",
+    "superjson": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@esc-party-vote/eslint-config": "workspace:*",
+    "@esc-party-vote/prettier-config": "workspace:*",
+    "@esc-party-vote/typescript-config": "workspace:*",
+    "@types/bun": "catalog:",
+    "typescript": "catalog:"
+  }
+}

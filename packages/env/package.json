@@ -1,0 +1,27 @@
+{
+  "name": "@esc-party-vote/env",
+  "type": "module",
+  "exports": {
+    "./server": "./src/server.ts",
+    "./db": "./src/db.ts",
+    "./vite": "./src/vite.ts"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules",
+    "format": "prettier . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore --write",
+    "format:check": "prettier . --ignore-path ../../.gitignore --ignore-path ../../.prettierignore --check",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@esc-party-vote/prettier-config",
+  "dependencies": {
+    "@t3-oss/env-core": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@esc-party-vote/eslint-config": "workspace:*",
+    "@esc-party-vote/prettier-config": "workspace:*",
+    "@esc-party-vote/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

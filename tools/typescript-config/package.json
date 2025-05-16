@@ -1,0 +1,8 @@
+{
+  "name": "@esc-party-vote/typescript-config",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./tsconfig.json"
+  }
+}

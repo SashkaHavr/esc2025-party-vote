@@ -1,0 +1,10 @@
+{
+  "extends": "@esc-party-vote/typescript-config",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["./src"]
+}
