@@ -20,11 +20,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - DATABASE_HOST=postgres
-      - DATABASE_NAME=postgres
-      - DATABASE_USER=postgres
-      - DATABASE_SSL=false
-      - DATABASE_PASSWORD=password
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/postgres
     networks:
       - db-network
   api:
@@ -36,13 +32,7 @@ services:
         condition: service_healthy
     environment:
       - CORS_ORIGINS=http://localhost:5241
-      - DATABASE_HOST=postgres
-      - DATABASE_NAME=postgres
-      - DATABASE_USER=postgres
-      - DATABASE_SSL=false
-      - DATABASE_PASSWORD=password
-    env_file:
-      - .env
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/postgres
     networks:
       - db-network
     ports:

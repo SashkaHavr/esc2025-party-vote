@@ -2,7 +2,8 @@ import { createEnv } from '@t3-oss/env-core';
 import { z } from 'zod/v4';
 
 export const dbConfig = {
-  DATABASE_FILE_NAME: z.string().default('votes.sqlite'),
+  DATABASE_URL: z.string(),
+  DATABASE_SSL: z.stringbool().default(false),
 };
 
 export const envDB = createEnv({

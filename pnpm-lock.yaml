@@ -23,7 +23,7 @@ catalogs:
       version: 5.8.2
     zod:
       specifier: next
-      version: 3.25.0-beta.20250517T052756
+      version: 3.25.0-beta.20250517T081109
   react:
     '@types/react':
       specifier: ^19.1.2
@@ -153,10 +153,10 @@ importers:
         version: link:../../tools/typescript-config
       '@julr/vite-plugin-validate-env':
         specifier: ^1.3.0
-        version: 1.3.0(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))(zod@3.25.0-beta.20250517T052756)
+        version: 1.3.0(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))(zod@3.25.0-beta.20250517T081109)
       '@t3-oss/env-core':
         specifier: 'catalog:'
-        version: 0.12.0(typescript@5.8.2)(zod@3.25.0-beta.20250517T052756)
+        version: 0.12.0(typescript@5.8.2)(zod@3.25.0-beta.20250517T081109)
       '@tanstack/router-plugin':
         specifier: ^1.116.1
         version: 1.120.3(@tanstack/react-router@1.120.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))
@@ -192,16 +192,13 @@ importers:
         version: 5.1.4(typescript@5.8.2)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))
       zod:
         specifier: 'catalog:'
-        version: 3.25.0-beta.20250517T052756
+        version: 3.25.0-beta.20250517T081109
 
   packages/db:
     dependencies:
       '@esc-party-vote/env':
         specifier: workspace:*
         version: link:../env
-      '@libsql/client':
-        specifier: ^0.15.6
-        version: 0.15.6
       drizzle-orm:
         specifier: 'catalog:'
         version: 1.0.0-beta.1-c0277c0(@libsql/client@0.15.6)(@types/pg@8.15.2)(better-sqlite3@11.10.0)(bun-types@1.2.13)(pg@8.16.0)
@@ -235,10 +232,10 @@ importers:
     dependencies:
       '@t3-oss/env-core':
         specifier: 'catalog:'
-        version: 0.12.0(typescript@5.8.2)(zod@3.25.0-beta.20250517T052756)
+        version: 0.12.0(typescript@5.8.2)(zod@3.25.0-beta.20250517T081109)
       zod:
         specifier: 'catalog:'
-        version: 3.25.0-beta.20250517T052756
+        version: 3.25.0-beta.20250517T081109
     devDependencies:
       '@esc-party-vote/eslint-config':
         specifier: workspace:*
@@ -272,7 +269,7 @@ importers:
         version: 2.2.2
       zod:
         specifier: 'catalog:'
-        version: 3.25.0-beta.20250517T052756
+        version: 3.25.0-beta.20250517T081109
     devDependencies:
       '@esc-party-vote/eslint-config':
         specifier: workspace:*
@@ -2866,8 +2863,8 @@ packages:
   zod@3.24.3:
     resolution: {integrity: sha512-HhY1oqzWCQWuUqvBFnsyrtZRhyPeR7SUGv+C4+MsisMuVfSPx8HpwWqH8tRahSlt6M3PiFAcoeFhZAqIXTxoSg==}
 
-  zod@3.25.0-beta.20250517T052756:
-    resolution: {integrity: sha512-c/zhUDke7THBfgQmR83vFevU8hykK3p6adwNODYUH4VxYBjwQiF6b8zoG6RhwXPN/9IRrWyVlxC+iOiqsMTygg==}
+  zod@3.25.0-beta.20250517T081109:
+    resolution: {integrity: sha512-vC7QXH43FCFXPU8L5bB15xhrQzxDVnqKFpdk2KcBBuiQl5IlqSEGvDNFw4BhkshwlMsLsuuYfhF1uuHYXrGOZQ==}
 
 snapshots:
 
@@ -3301,14 +3298,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@julr/vite-plugin-validate-env@1.3.0(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))(zod@3.25.0-beta.20250517T052756)':
+  '@julr/vite-plugin-validate-env@1.3.0(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))(zod@3.25.0-beta.20250517T081109)':
     dependencies:
       '@poppinss/cliui': 6.4.3
       '@poppinss/validator-lite': 1.0.3
       unconfig: 0.6.1
       vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4)
     optionalDependencies:
-      zod: 3.25.0-beta.20250517T052756
+      zod: 3.25.0-beta.20250517T081109
     transitivePeerDependencies:
       - supports-color
 
@@ -3322,10 +3319,12 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+    optional: true
 
   '@libsql/core@0.15.6':
     dependencies:
       js-base64: 3.7.7
+    optional: true
 
   '@libsql/darwin-arm64@0.5.10':
     optional: true
@@ -3342,8 +3341,10 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+    optional: true
 
-  '@libsql/isomorphic-fetch@0.3.1': {}
+  '@libsql/isomorphic-fetch@0.3.1':
+    optional: true
 
   '@libsql/isomorphic-ws@0.1.5':
     dependencies:
@@ -3352,6 +3353,7 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+    optional: true
 
   '@libsql/linux-arm-gnueabihf@0.5.10':
     optional: true
@@ -3374,7 +3376,8 @@ snapshots:
   '@libsql/win32-x64-msvc@0.5.10':
     optional: true
 
-  '@neon-rs/load@0.0.4': {}
+  '@neon-rs/load@0.0.4':
+    optional: true
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -3471,10 +3474,10 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.40.2':
     optional: true
 
-  '@t3-oss/env-core@0.12.0(typescript@5.8.2)(zod@3.25.0-beta.20250517T052756)':
+  '@t3-oss/env-core@0.12.0(typescript@5.8.2)(zod@3.25.0-beta.20250517T081109)':
     optionalDependencies:
       typescript: 5.8.2
-      zod: 3.25.0-beta.20250517T052756
+      zod: 3.25.0-beta.20250517T081109
 
   '@tailwindcss/node@4.1.7':
     dependencies:
@@ -3701,6 +3704,7 @@ snapshots:
   '@types/ws@8.18.1':
     dependencies:
       '@types/node': 22.15.18
+    optional: true
 
   '@typescript-eslint/eslint-plugin@8.30.1(@typescript-eslint/parser@8.30.1(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
@@ -4009,7 +4013,8 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  data-uri-to-buffer@4.0.1: {}
+  data-uri-to-buffer@4.0.1:
+    optional: true
 
   debug@4.4.0:
     dependencies:
@@ -4029,7 +4034,8 @@ snapshots:
 
   detect-indent@7.0.1: {}
 
-  detect-libc@2.0.2: {}
+  detect-libc@2.0.2:
+    optional: true
 
   detect-libc@2.0.4: {}
 
@@ -4258,6 +4264,7 @@ snapshots:
     dependencies:
       node-domexception: 1.0.0
       web-streams-polyfill: 3.3.3
+    optional: true
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -4285,6 +4292,7 @@ snapshots:
   formdata-polyfill@4.0.10:
     dependencies:
       fetch-blob: 3.2.0
+    optional: true
 
   fs-constants@1.0.0:
     optional: true
@@ -4392,7 +4400,8 @@ snapshots:
 
   jiti@2.4.2: {}
 
-  js-base64@3.7.7: {}
+  js-base64@3.7.7:
+    optional: true
 
   js-tokens@4.0.0: {}
 
@@ -4435,6 +4444,7 @@ snapshots:
       '@libsql/linux-x64-gnu': 0.5.10
       '@libsql/linux-x64-musl': 0.5.10
       '@libsql/win32-x64-msvc': 0.5.10
+    optional: true
 
   lightningcss-darwin-arm64@1.30.1:
     optional: true
@@ -4557,13 +4567,15 @@ snapshots:
       semver: 7.7.1
     optional: true
 
-  node-domexception@1.0.0: {}
+  node-domexception@1.0.0:
+    optional: true
 
   node-fetch@3.3.2:
     dependencies:
       data-uri-to-buffer: 4.0.1
       fetch-blob: 3.2.0
       formdata-polyfill: 4.0.10
+    optional: true
 
   node-releases@2.0.19: {}
 
@@ -4723,7 +4735,8 @@ snapshots:
 
   pretty-hrtime@1.0.3: {}
 
-  promise-limit@2.7.0: {}
+  promise-limit@2.7.0:
+    optional: true
 
   pump@3.0.2:
     dependencies:
@@ -5090,7 +5103,8 @@ snapshots:
       lightningcss: 1.30.1
       tsx: 4.19.4
 
-  web-streams-polyfill@3.3.3: {}
+  web-streams-polyfill@3.3.3:
+    optional: true
 
   webpack-virtual-modules@0.6.2: {}
 
@@ -5111,7 +5125,8 @@ snapshots:
   wrappy@1.0.2:
     optional: true
 
-  ws@8.18.2: {}
+  ws@8.18.2:
+    optional: true
 
   xtend@4.0.2: {}
 
@@ -5127,4 +5142,4 @@ snapshots:
 
   zod@3.24.3: {}
 
-  zod@3.25.0-beta.20250517T052756: {}
+  zod@3.25.0-beta.20250517T081109: {}

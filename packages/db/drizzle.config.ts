@@ -5,7 +5,7 @@ import { envDB } from '@esc-party-vote/env/db';
 export default defineConfig({
   out: './drizzle',
   schema: './src/schema',
-  dialect: 'sqlite',
-  dbCredentials: { url: envDB.DATABASE_FILE_NAME },
+  dialect: 'postgresql',
+  dbCredentials: { url: envDB.DATABASE_URL, ssl: envDB.DATABASE_SSL },
   casing: 'snake_case',
 });

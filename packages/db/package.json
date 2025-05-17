@@ -20,7 +20,6 @@
   "prettier": "@esc-party-vote/prettier-config",
   "dependencies": {
     "@esc-party-vote/env": "workspace:*",
-    "@libsql/client": "^0.15.6",
     "drizzle-orm": "catalog:",
     "pg": "^8.14.1"
   },
