@@ -31,7 +31,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - CORS_ORIGINS=http://localhost:5241
+      - CORS_ORIGINS=https://esc.sashkahavr.dev
       - DATABASE_URL=postgresql://postgres:password@postgres:5432/postgres
     networks:
       - db-network
