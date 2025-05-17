@@ -19,7 +19,9 @@
     "@esc-party-vote/db": "workspace:*",
     "@esc-party-vote/env": "workspace:*",
     "@trpc/server": "catalog:trpc",
+    "cookie": "^1.0.2",
     "drizzle-orm": "catalog:",
+    "hono": "catalog:",
     "superjson": "catalog:",
     "zod": "catalog:"
   },
@@ -28,6 +30,7 @@
     "@esc-party-vote/prettier-config": "workspace:*",
     "@esc-party-vote/typescript-config": "workspace:*",
     "@types/bun": "catalog:",
+    "@types/cookie": "^1.0.0",
     "typescript": "catalog:"
   }
 }

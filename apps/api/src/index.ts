@@ -16,7 +16,7 @@ app.use(
 );
 
 app.on(['POST', 'GET'], '/trpc/*', (c) => {
-  return trpcHandler({ request: c.req.raw });
+  return trpcHandler({ request: c.req.raw, c: c });
 });
 
 export default {

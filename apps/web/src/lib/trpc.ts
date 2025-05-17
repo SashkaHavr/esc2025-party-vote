@@ -7,7 +7,7 @@ import type { TRPCRouter } from '@esc-party-vote/trpc';
 
 export const queryClient = new QueryClient({});
 
-const trpcClient = createTRPCClient<TRPCRouter>({
+export const trpcClient = createTRPCClient<TRPCRouter>({
   links: [
     httpBatchLink({
       transformer: superjson,

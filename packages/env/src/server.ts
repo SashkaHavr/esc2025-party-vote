@@ -20,6 +20,9 @@ export const envServer = createEnv({
           : s.split(' '),
       )
       .refine((a) => z.array(z.url()).safeParse(a)),
+
+    INVITATION_CODE: z.string(),
+    AUTH_SECRET: z.string(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
