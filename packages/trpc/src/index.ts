@@ -4,12 +4,16 @@ import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 
 import { createContext } from '#context.ts';
 import { router } from '#init.ts';
+import { countriesRouter } from '#routers/countries.ts';
 import { userRouter } from '#routers/user.ts';
+import { votesRouter } from '#routers/votes.ts';
 import { publicProcedure } from './init';
 
 const appRouter = router({
   health: publicProcedure.query(() => 'Healthy!'),
   user: userRouter,
+  countries: countriesRouter,
+  votes: votesRouter,
 });
 
 export function trpcHandler({

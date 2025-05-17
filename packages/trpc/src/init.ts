@@ -5,6 +5,7 @@ import z, { ZodError } from 'zod/v4';
 import { envServer } from '@esc-party-vote/env/server';
 
 import type { Context } from '#context.ts';
+import { cookieSchema } from '#utils/cookies.ts';
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -43,20 +44,21 @@ export const publicProcedure =
         return result;
       });
 
-// export const protectedProcedure = publicProcedure.use(async ({ ctx, next }) => {
-//   const session = { test: '' };
-//   if (!session) {
-//     throw new TRPCError({
-//       message: 'You must authenticate to use this endpoint',
-//       code: 'UNAUTHORIZED',
-//     });
-//   }
-//   return next({
-//     ctx: {
-//       ...ctx,
-//       session: session,
-//     },
-//   });
-// });
+export const protectedProcedure = publicProcedure.use(async ({ ctx, next }) => {
+  const cookie = ctx.getCookie('auth');
+  if (!cookie) {
+    throw new TRPCError({
+      message: 'You must authenticate to use this endpoint',
+      code: 'UNAUTHORIZED',
+    });
+  }
+  const user = cookieSchema.parse(JSON.parse(cookie));
+  return next({
+    ctx: {
+      ...ctx,
+      user: user,
+    },
+  });
+});
 
 export const createCallerFactory = t.createCallerFactory;

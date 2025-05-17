@@ -6,8 +6,7 @@ import { user as userTable } from '@esc-party-vote/db/schema';
 import { envServer } from '@esc-party-vote/env/server';
 
 import { publicProcedure, router } from '#init.ts';
-
-const cookieSchema = z.object({ userId: z.number(), user: z.string() });
+import { cookieSchema } from '#utils/cookies.ts';
 
 export const userRouter = router({
   login: publicProcedure

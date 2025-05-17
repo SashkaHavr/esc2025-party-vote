@@ -15,8 +15,9 @@ import { Route as VoteImport } from './routes/vote'
 import { Route as IndexImport } from './routes/index'
 import { Route as VoteIndexImport } from './routes/vote.index'
 import { Route as LoginIndexImport } from './routes/login.index'
-import { Route as VoteVoteImport } from './routes/vote.vote'
 import { Route as VoteResultsImport } from './routes/vote.results'
+import { Route as VoteVoteIndexImport } from './routes/vote.vote.index'
+import { Route as VoteVoteCountryCodeImport } from './routes/vote.vote.$countryCode'
 
 // Create/Update Routes
 
@@ -44,15 +45,21 @@ const LoginIndexRoute = LoginIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const VoteVoteRoute = VoteVoteImport.update({
-  id: '/vote',
-  path: '/vote',
-  getParentRoute: () => VoteRoute,
-} as any)
-
 const VoteResultsRoute = VoteResultsImport.update({
   id: '/results',
   path: '/results',
+  getParentRoute: () => VoteRoute,
+} as any)
+
+const VoteVoteIndexRoute = VoteVoteIndexImport.update({
+  id: '/vote/',
+  path: '/vote/',
+  getParentRoute: () => VoteRoute,
+} as any)
+
+const VoteVoteCountryCodeRoute = VoteVoteCountryCodeImport.update({
+  id: '/vote/$countryCode',
+  path: '/vote/$countryCode',
   getParentRoute: () => VoteRoute,
 } as any)
 
@@ -81,13 +88,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VoteResultsImport
       parentRoute: typeof VoteImport
     }
-    '/vote/vote': {
-      id: '/vote/vote'
-      path: '/vote'
-      fullPath: '/vote/vote'
-      preLoaderRoute: typeof VoteVoteImport
-      parentRoute: typeof VoteImport
-    }
     '/login/': {
       id: '/login/'
       path: '/login'
@@ -102,6 +102,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VoteIndexImport
       parentRoute: typeof VoteImport
     }
+    '/vote/vote/$countryCode': {
+      id: '/vote/vote/$countryCode'
+      path: '/vote/$countryCode'
+      fullPath: '/vote/vote/$countryCode'
+      preLoaderRoute: typeof VoteVoteCountryCodeImport
+      parentRoute: typeof VoteImport
+    }
+    '/vote/vote/': {
+      id: '/vote/vote/'
+      path: '/vote'
+      fullPath: '/vote/vote'
+      preLoaderRoute: typeof VoteVoteIndexImport
+      parentRoute: typeof VoteImport
+    }
   }
 }
 
@@ -109,14 +123,16 @@ declare module '@tanstack/react-router' {
 
 interface VoteRouteChildren {
   VoteResultsRoute: typeof VoteResultsRoute
-  VoteVoteRoute: typeof VoteVoteRoute
   VoteIndexRoute: typeof VoteIndexRoute
+  VoteVoteCountryCodeRoute: typeof VoteVoteCountryCodeRoute
+  VoteVoteIndexRoute: typeof VoteVoteIndexRoute
 }
 
 const VoteRouteChildren: VoteRouteChildren = {
   VoteResultsRoute: VoteResultsRoute,
-  VoteVoteRoute: VoteVoteRoute,
   VoteIndexRoute: VoteIndexRoute,
+  VoteVoteCountryCodeRoute: VoteVoteCountryCodeRoute,
+  VoteVoteIndexRoute: VoteVoteIndexRoute,
 }
 
 const VoteRouteWithChildren = VoteRoute._addFileChildren(VoteRouteChildren)
@@ -125,17 +141,19 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/vote': typeof VoteRouteWithChildren
   '/vote/results': typeof VoteResultsRoute
-  '/vote/vote': typeof VoteVoteRoute
   '/login': typeof LoginIndexRoute
   '/vote/': typeof VoteIndexRoute
+  '/vote/vote/$countryCode': typeof VoteVoteCountryCodeRoute
+  '/vote/vote': typeof VoteVoteIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/vote/results': typeof VoteResultsRoute
-  '/vote/vote': typeof VoteVoteRoute
   '/login': typeof LoginIndexRoute
   '/vote': typeof VoteIndexRoute
+  '/vote/vote/$countryCode': typeof VoteVoteCountryCodeRoute
+  '/vote/vote': typeof VoteVoteIndexRoute
 }
 
 export interface FileRoutesById {
@@ -143,9 +161,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/vote': typeof VoteRouteWithChildren
   '/vote/results': typeof VoteResultsRoute
-  '/vote/vote': typeof VoteVoteRoute
   '/login/': typeof LoginIndexRoute
   '/vote/': typeof VoteIndexRoute
+  '/vote/vote/$countryCode': typeof VoteVoteCountryCodeRoute
+  '/vote/vote/': typeof VoteVoteIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -154,19 +173,27 @@ export interface FileRouteTypes {
     | '/'
     | '/vote'
     | '/vote/results'
-    | '/vote/vote'
     | '/login'
     | '/vote/'
+    | '/vote/vote/$countryCode'
+    | '/vote/vote'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/vote/results' | '/vote/vote' | '/login' | '/vote'
+  to:
+    | '/'
+    | '/vote/results'
+    | '/login'
+    | '/vote'
+    | '/vote/vote/$countryCode'
+    | '/vote/vote'
   id:
     | '__root__'
     | '/'
     | '/vote'
     | '/vote/results'
-    | '/vote/vote'
     | '/login/'
     | '/vote/'
+    | '/vote/vote/$countryCode'
+    | '/vote/vote/'
   fileRoutesById: FileRoutesById
 }
 
@@ -204,16 +231,13 @@ export const routeTree = rootRoute
       "filePath": "vote.tsx",
       "children": [
         "/vote/results",
-        "/vote/vote",
-        "/vote/"
+        "/vote/",
+        "/vote/vote/$countryCode",
+        "/vote/vote/"
       ]
     },
     "/vote/results": {
       "filePath": "vote.results.tsx",
-      "parent": "/vote"
-    },
-    "/vote/vote": {
-      "filePath": "vote.vote.tsx",
       "parent": "/vote"
     },
     "/login/": {
@@ -221,6 +245,14 @@ export const routeTree = rootRoute
     },
     "/vote/": {
       "filePath": "vote.index.tsx",
+      "parent": "/vote"
+    },
+    "/vote/vote/$countryCode": {
+      "filePath": "vote.vote.$countryCode.tsx",
+      "parent": "/vote"
+    },
+    "/vote/vote/": {
+      "filePath": "vote.vote.index.tsx",
       "parent": "/vote"
     }
   }

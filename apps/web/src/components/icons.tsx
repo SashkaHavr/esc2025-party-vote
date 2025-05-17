@@ -1,8 +1,4 @@
-interface Props {
-  className?: string;
-}
-
-export function EuroviosionLogo({ className }: Props) {
+export function EuroviosionLogo({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

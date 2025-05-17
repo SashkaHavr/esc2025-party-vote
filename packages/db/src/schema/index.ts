@@ -9,6 +9,7 @@ export const country = pgTable('country', {
   id: serial('id').primaryKey(),
   name: text().notNull(),
   code: text().notNull(),
+  number: integer().notNull(),
 });
 
 export const vote = pgTable('vote', {
