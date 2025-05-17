@@ -10,7 +10,9 @@ export const Route = createFileRoute('/vote/results')({
 
 function RouteComponent() {
   const countries = useQuery(trpc.countries.getAll.queryOptions());
-  const votes = useQuery(trpc.votes.getOverallAll.queryOptions());
+  const votes = useQuery(
+    trpc.votes.getOverallAll.queryOptions(void 0, { refetchInterval: 1000 }),
+  );
 
   const countryVotes =
     countries.isSuccess && votes.isSuccess

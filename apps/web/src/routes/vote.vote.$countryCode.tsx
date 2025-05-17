@@ -10,6 +10,7 @@ import { ChevronLeftIcon } from 'lucide-react';
 
 import { Button } from '~/components/ui/button';
 
+import { VoteScores } from '~/components/vote/VoteScores';
 import { VoteSlider } from '~/components/vote/VoteSlider';
 import { trpc } from '~/lib/trpc';
 
@@ -38,6 +39,9 @@ function RouteComponent() {
         await queryClient.invalidateQueries({
           queryKey: trpc.votes.getOverall.queryKey(),
         });
+        await queryClient.invalidateQueries({
+          queryKey: trpc.votes.getOverallAll.queryKey(),
+        });
       },
     }),
   );
@@ -45,6 +49,7 @@ function RouteComponent() {
   const votesOverall = useQuery(
     trpc.votes.getOverall.queryOptions(
       country.isSuccess ? { countryId: country.data.id } : skipToken,
+      { refetchInterval: 1000 },
     ),
   );
 
@@ -77,26 +82,9 @@ function RouteComponent() {
         userVote.isSuccess &&
         nextCountry.isSuccess &&
         (userVote.data.status == 'defined' && votesOverall.data ? (
-          <div className="flex w-60 flex-col gap-2">
-            <p className="text-xl font-bold">Average scores:</p>
-            <div className="flex flex-col gap-4">
-              <div className="flex gap-4">
-                <p className="font-bold">Song:</p>
-                <p className="">{votesOverall.data.song}</p>
-              </div>
-              <div className="flex gap-4">
-                <p className="font-bold">Voice:</p>
-                <p className="">{votesOverall.data.voice}</p>
-              </div>
-              <div className="flex gap-4">
-                <p className="font-bold">Performance:</p>
-                <p className="">{votesOverall.data.performance}</p>
-              </div>
-              <div className="flex gap-4">
-                <p className="font-bold">Overall:</p>
-                <p className="">{votesOverall.data.overall}</p>
-              </div>
-            </div>
+          <div className="flex w-60 flex-col gap-6">
+            <VoteScores heading="Average scores:" vote={votesOverall.data} />
+            <VoteScores heading="Your scores:" vote={userVote.data} />
             {nextCountry.data.country && (
               <Button
                 variant="secondary"

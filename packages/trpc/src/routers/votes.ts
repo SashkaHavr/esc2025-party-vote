@@ -5,13 +5,7 @@ import { db } from '@esc-party-vote/db';
 import { vote } from '@esc-party-vote/db/schema';
 
 import { protectedProcedure, router } from '#init.ts';
-
-function roundTo2(num: number) {
-  if (num == 0) {
-    return 0;
-  }
-  return Math.round(num * 100) / 100;
-}
+import { roundTo2 } from '#utils/round.ts';
 
 export const votesRouter = router({
   set: protectedProcedure
@@ -35,7 +29,11 @@ export const votesRouter = router({
       if (!vote) {
         return { status: 'undefined' as const };
       }
-      return { status: 'defined' as const, ...vote };
+      return {
+        status: 'defined' as const,
+        ...vote,
+        overall: roundTo2((vote.performance + vote.song + vote.voice) / 3),
+      };
     }),
   getOverall: protectedProcedure
     .input(z.object({ countryId: z.number() }))
