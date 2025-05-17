@@ -14,9 +14,7 @@ Deploy the app and choose your favorite contestant from among your friends!
 >
 > This startup guide is for demonstration/testing purposes and local usage only. Do NOT use in production environments due to lack of security/stability guarantees.
 
-1. Create [.env](./.env) file in the root directory
-2. Set **TWITCH_CLIENT_ID** and **TWITCH_CLIENT_SECRET**
-3. Run ``docker-compose up --build -d``
+1. Run ``docker-compose up --build -d``
 
 ## Development setup
 
