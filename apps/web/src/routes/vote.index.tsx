@@ -1,17 +1,20 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 
-import { trpcClient } from '~/lib/trpc';
+import { Button } from '~/components/ui/button';
 
 export const Route = createFileRoute('/vote/')({
-  beforeLoad: async () => {
-    const user = await trpcClient.user.get.query();
-    if (!user) {
-      throw redirect({ to: '/' });
-    }
-  },
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return <div>Hello "/vote/"!</div>;
+  return (
+    <div className="flex h-[100svh] flex-col items-center justify-center gap-4 pb-40">
+      <Button asChild className="w-32">
+        <Link to="/vote/vote">Vote!</Link>
+      </Button>
+      <Button asChild className="w-32">
+        <Link to="/vote/results">See results!</Link>
+      </Button>
+    </div>
+  );
 }

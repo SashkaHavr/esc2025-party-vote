@@ -21,7 +21,7 @@ function RouteComponent() {
       <p className="text-2xl font-bold">Shisha & Chill 💨🍹</p>
       <p className="text-2xl font-bold">Voting For</p>
       <EuroviosionLogo className="h-40 p-4"></EuroviosionLogo>
-      <Button asChild size="lg">
+      <Button asChild size="lg" className="w-32">
         <Link to="/login">Let's go!</Link>
       </Button>
     </div>
