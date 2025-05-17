@@ -35,6 +35,8 @@ services:
       - DATABASE_URL=postgresql://postgres:password@postgres:5432/postgres
     networks:
       - db-network
+    env_file:
+      - path: .env
     ports:
       - 5240:3000
   web:
@@ -42,7 +44,7 @@ services:
       context: .
       dockerfile: ./apps/web/Dockerfile
       args:
-        - VITE_API_URL=http://localhost:5240
+        - VITE_API_URL=https://api.esc.sashkahavr.dev
     ports:
       - 5241:3000
 
