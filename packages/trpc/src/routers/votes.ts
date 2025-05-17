@@ -6,6 +6,13 @@ import { vote } from '@esc-party-vote/db/schema';
 
 import { protectedProcedure, router } from '#init.ts';
 
+function roundTo2(num: number) {
+  if (num == 0) {
+    return 0;
+  }
+  return Math.round(num * 100) / 100;
+}
+
 export const votesRouter = router({
   set: protectedProcedure
     .input(
@@ -47,13 +54,40 @@ export const votesRouter = router({
         return { voice: 0, performance: 0, song: 0, overall: 0 };
       }
       const res = {
-        voice: votes[0].voice ? Number.parseFloat(votes[0].voice) : 0,
+        voice: votes[0].voice ? roundTo2(Number.parseFloat(votes[0].voice)) : 0,
         performance: votes[0].performance
-          ? Number.parseFloat(votes[0].performance)
+          ? roundTo2(Number.parseFloat(votes[0].performance))
           : 0,
-        song: votes[0].song ? Number.parseFloat(votes[0].song) : 0,
+        song: votes[0].song ? roundTo2(Number.parseFloat(votes[0].song)) : 0,
       };
-      console.log(res);
-      return { ...res, overall: (res.song + res.performance + res.song) / 3 };
+      return {
+        ...res,
+        overall: roundTo2((res.song + res.performance + res.song) / 3),
+      };
     }),
+  getOverallAll: protectedProcedure.query(async () => {
+    const votes = await db
+      .select({
+        countryId: vote.countryId,
+        voice: avg(vote.voice),
+        performance: avg(vote.performance),
+        song: avg(vote.song),
+      })
+      .from(vote)
+      .groupBy(vote.countryId);
+    return votes.map((v) => {
+      const res = {
+        countryId: v.countryId,
+        voice: v.voice ? roundTo2(Number.parseFloat(v.voice)) : 0,
+        performance: v.performance
+          ? roundTo2(Number.parseFloat(v.performance))
+          : 0,
+        song: v.song ? roundTo2(Number.parseFloat(v.song)) : 0,
+      };
+      return {
+        ...res,
+        overall: roundTo2((res.song + res.performance + res.song) / 3),
+      };
+    });
+  }),
 });
