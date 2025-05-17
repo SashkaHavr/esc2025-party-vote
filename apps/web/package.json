@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.2",
     "@tailwindcss/vite": "catalog:tailwind",
     "@tanstack/react-query": "catalog:trpc",
     "@tanstack/react-router": "^1.116.0",
