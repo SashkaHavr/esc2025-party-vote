@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres
     volumes:
-      - pgdata:/var/lib/postgresql/data 
+      - pgdata-2:/var/lib/postgresql/data 
     environment:
       - POSTGRES_PASSWORD=password
     networks:
@@ -41,4 +41,4 @@ networks:
   db-network:
 
 volumes:
-  pgdata:
+  pgdata-2:
