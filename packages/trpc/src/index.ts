@@ -6,7 +6,7 @@ import { createCallerFactory, router } from '#init.ts';
 import { publicProcedure } from './init';
 
 const appRouter = router({
-  health: publicProcedure.query(() => null),
+  health: publicProcedure.query(() => 'Healthy!'),
 });
 
 export function trpcHandler({ request }: { request: Request }) {

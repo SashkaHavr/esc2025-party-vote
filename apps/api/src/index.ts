@@ -15,10 +15,6 @@ app.use(
   }),
 );
 
-app.on(['POST', 'GET'], '/auth/*', (c) => {
-  return auth.handler(c.req.raw);
-});
-
 app.on(['POST', 'GET'], '/trpc/*', (c) => {
   return trpcHandler({ request: c.req.raw });
 });

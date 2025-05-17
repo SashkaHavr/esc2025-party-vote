@@ -166,3 +166,6 @@ yarn-error.*
 
 # local env files
 .env*.local
+
+*.sqlite
+*.db

@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from '@trpc/server';
 import superjson from 'superjson';
-import z, { ZodError } from 'zod';
+import z, { ZodError } from 'zod/v4';
 
 import { envServer } from '@esc-party-vote/env/server';
 
@@ -43,20 +43,20 @@ export const publicProcedure =
         return result;
       });
 
-export const protectedProcedure = publicProcedure.use(async ({ ctx, next }) => {
-  const session = { test: '' };
-  if (!session) {
-    throw new TRPCError({
-      message: 'You must authenticate to use this endpoint',
-      code: 'UNAUTHORIZED',
-    });
-  }
-  return next({
-    ctx: {
-      ...ctx,
-      session: session,
-    },
-  });
-});
+// export const protectedProcedure = publicProcedure.use(async ({ ctx, next }) => {
+//   const session = { test: '' };
+//   if (!session) {
+//     throw new TRPCError({
+//       message: 'You must authenticate to use this endpoint',
+//       code: 'UNAUTHORIZED',
+//     });
+//   }
+//   return next({
+//     ctx: {
+//       ...ctx,
+//       session: session,
+//     },
+//   });
+// });
 
 export const createCallerFactory = t.createCallerFactory;

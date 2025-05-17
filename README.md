@@ -1,5 +1,13 @@
 # *Eurovision voting with friends*
 
+## About
+
+Deploy the app and choose your favorite contestant from among your friends!
+
+> [!WARNING]
+>
+> This is not an official voting system, but rather a way for you to choose your favorite song or contestant to share with your friends and relatives.
+
 ## Fast local startup
 
 > [!WARNING]

@@ -1,19 +1,14 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
+import { Database } from 'bun:sqlite';
+import { drizzle } from 'drizzle-orm/bun-sqlite';
 
 import { envServer } from '@esc-party-vote/env/server';
 
 import { relations } from '#relations.ts';
 import * as schema from './schema';
 
+const sqlite = new Database(envServer.DATABASE_FILE_NAME);
 export const db = drizzle({
-  connection: {
-    host: envServer.DATABASE_HOST,
-    port: envServer.DATABASE_PORT,
-    database: envServer.DATABASE_NAME,
-    user: envServer.DATABASE_USER,
-    password: envServer.DATABASE_PASSWORD,
-    ssl: envServer.DATABASE_SSL,
-  },
+  client: sqlite,
   schema: schema,
   relations: relations,
   casing: 'snake_case',
