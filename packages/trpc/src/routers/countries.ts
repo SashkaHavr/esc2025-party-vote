@@ -16,4 +16,13 @@ export const countriesRouter = router({
       if (!country) throw new TRPCError({ code: 'UNPROCESSABLE_CONTENT' });
       return country;
     }),
+  getNext: protectedProcedure
+    .input(z.object({ countryNumber: z.number() }))
+    .query(async ({ input }) => {
+      const country = await db.query.country.findFirst({
+        where: { number: input.countryNumber + 1 },
+      });
+      if (!country) return { found: false };
+      return { found: true, country: country };
+    }),
 });

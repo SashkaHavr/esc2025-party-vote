@@ -48,6 +48,12 @@ function RouteComponent() {
     ),
   );
 
+  const nextCountry = useQuery(
+    trpc.countries.getNext.queryOptions(
+      country.isSuccess ? { countryNumber: country.data.number } : skipToken,
+    ),
+  );
+
   const [song, setSong] = useState(6);
   const [voice, setVoice] = useState(6);
   const [performance, setPerformance] = useState(6);
@@ -69,6 +75,7 @@ function RouteComponent() {
       )}
       {country.isSuccess &&
         userVote.isSuccess &&
+        nextCountry.isSuccess &&
         (userVote.data.status == 'defined' && votesOverall.data ? (
           <div className="flex w-60 flex-col gap-2">
             <p className="text-xl font-bold">Average scores:</p>
@@ -90,6 +97,26 @@ function RouteComponent() {
                 <p className="">{votesOverall.data.overall}</p>
               </div>
             </div>
+            {nextCountry.data.country && (
+              <Button
+                variant="secondary"
+                asChild
+                className="mt-10 min-w-40 self-center"
+              >
+                <Link
+                  to="/vote/vote/$countryCode"
+                  params={{ countryCode: nextCountry.data.country.code }}
+                  className="flex gap-2 px-4"
+                >
+                  <p>Go to {nextCountry.data.country.name}</p>
+                  <img
+                    src={`https://flagcdn.com/${nextCountry.data.country.code}.svg`}
+                    width="24"
+                    alt={nextCountry.data.country.name}
+                  />
+                </Link>
+              </Button>
+            )}
           </div>
         ) : (
           <>
