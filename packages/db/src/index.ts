@@ -45,3 +45,4 @@ if ((await db.query.country.findFirst()) == undefined) {
     { name: 'Albania', code: 'al', number: 26 },
   ]);
 }
+console.log('COUNTRIES: ', (await db.query.country.findMany()).length);
